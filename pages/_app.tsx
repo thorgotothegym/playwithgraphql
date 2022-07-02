@@ -1,19 +1,15 @@
-import type { AppProps } from 'next/app';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { ApolloProvider } from '@apollo/client';
+import type { AppProps } from "next/app";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-const client = new ApolloClient({
-  uri: 'https://countries.trevorblades.com',
-  cache: new InMemoryCache(),
-});
+import "../styles/globals.css";
 
-import '../styles/globals.css';
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={client}>
+    <QueryClientProvider client={queryClient}>
       <Component {...pageProps} />
-    </ApolloProvider>
+    </QueryClientProvider>
   );
 }
 
